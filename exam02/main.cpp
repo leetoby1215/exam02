@@ -37,8 +37,8 @@ void detect() {
     float dis_x = 0;
     float dis_y = 0;
     for (int i = 0; i <= duration * 10; i++) {
-        dis_x += t[0] * 0.1 * 0.1 / 2;
-        dis_y += t[1] * 0.1 * 0.1 / 2;
+        dis_x += t[0] * 0.1 * 0.1 / 2 * 100;
+        dis_y += t[1] * 0.1 * 0.1 / 2 * 100;
         if (dis_x * dis_x + dis_y * dis_y > 25) {
             is_over_5_cm = true;
             led = false;
@@ -46,7 +46,7 @@ void detect() {
             is_over_5_cm = false;
             led = true;
         }
-        printf("[%1.4f,%1.4f,%1.4f,%d,%1.4f,%1.4f]\r\n", t[0], t[1], t[2], is_over_5_cm,dis_x,dis_y);
+        printf("[%1.4f,%1.4f,%1.4f,%d]\r\n", t[0], t[1], t[2], is_over_5_cm);
         wait(0.1);
     }
     led = true;
