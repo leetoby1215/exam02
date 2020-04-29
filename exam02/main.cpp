@@ -34,11 +34,19 @@ float t[3];
 
 void detect() {
     bool is_over_5_cm = false;
-    float horizontal_acceleration = 0;
-    float distance = 0;
+    float dis_x = 0;
+    float dis_y = 0;
     for (int i = 0; i <= duration * 10; i++) {
-        horizontal_acceleration
-        printf("[%1.4f,%1.4f,%1.4f]\r\n", t[0], t[1], t[2]);
+        dis_x += t[0] * 0.1 * 0.1 / 2;
+        dis_y += t[1] * 0.1 * 0.1 / 2;
+        if (dis_x * dis_x + dis_y * dis_y > 25) {
+            is_over_5_cm = true;
+            led = false;
+        } else {
+            is_over_5_cm = false;
+            led = true;
+        }
+        printf("[%1.4f,%1.4f,%1.4f,%d,%1.4f,%1.4f]\r\n", t[0], t[1], t[2], is_over_5_cm,dis_x,dis_y);
         wait(0.1);
     }
     led = true;
